@@ -1,18 +1,18 @@
-name: example-basic
+name: Tests
+
 on:
   push:
-    branches:
-      - 'master'
-  
-jobs:
- basic-ubuntu-20:
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+	branches: [ master ]
+  pull_request:
+	branches: [ master ]
 
-      - name: Cypress tests
-        uses: ./
-        with:
-          working-directory: examples/v9/basic
-          build: npx cypress info
+jobs:
+  test:
+	runs-on: ubuntu-latest
+	steps:
+	- uses: actions/checkout@v2
+	- uses: actions/setup-node@v2
+	  with:
+		node-version: '12'
+	- run: npm ci
+	- run: npm test
