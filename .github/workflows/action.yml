@@ -1,8 +1,8 @@
 name: Cypress Tests
 'on':
-  #- push
-  schedule:
-   - cron: "*/5 * * * *"
+  - push
+  #schedule:
+   #- cron: "*/5 * * * *"
 jobs:
   test:
     runs-on: ubuntu-20.04
@@ -21,4 +21,10 @@ jobs:
         with: 
          name: functional-test-result
          path: CddrReport.html
+         
+      - name: test2     
+        uses: actions/upload-artifact@v2
+        with: 
+          name: functional-test-result
+          path: CddrReport.json
   
