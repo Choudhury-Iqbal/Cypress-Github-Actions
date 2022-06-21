@@ -1,0 +1,16 @@
+{
+    "watchForFileChanges":true,
+    "defaultCommandTimeout":5000,
+    "reporter":"mochawesome",
+
+    "reporterOptions": {
+        "charts": true,
+        "reportFilename": "CddrHtmlReport",
+        "overwrite": false,
+        "html": false,
+        "reportDir": "cypress/reports",
+        "json": true
+    },
+    "video": false
+
+}
