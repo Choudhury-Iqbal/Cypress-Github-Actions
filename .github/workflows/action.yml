@@ -2,7 +2,7 @@ name: Cypress Tests
 'on':
   #- push
   schedule:
-   - test: "*/5 * * * *"
+   - cron: "*/5 * * * *"
 jobs:
   test:
     runs-on: ubuntu-20.04
