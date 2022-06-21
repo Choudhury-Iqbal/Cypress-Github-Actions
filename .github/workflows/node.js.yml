@@ -26,7 +26,7 @@ jobs:
           $(npm bin)/cypress verify
       
       - name: Run Cypress tests
-        run: npm run test:chrome
+        run: npm run test
         continue-on-error: true
       
       
@@ -36,10 +36,10 @@ jobs:
          name: functional-test-result
          path: CddrReport.html
          
-      - name: test2     
+      - name: upload Screenshot   
         uses: actions/upload-artifact@v2
         with: 
           name: functional-test-result
-          path: CddrReport.json
+          path: cypress/screenshots
 
       
