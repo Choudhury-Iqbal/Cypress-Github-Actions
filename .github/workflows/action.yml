@@ -12,10 +12,10 @@ jobs:
         
         
       - name: Cypress info
+        continue-on-error: true
         uses: cypress-io/github-action@v2
         with:
           build: npm run test
-          continue-on-error: true
       
       - name: upload Test Results
         uses: actions/upload-artifact@v2
