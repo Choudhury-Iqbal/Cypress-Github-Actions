@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "rimraf -r ./cypress/reports/*json && rimraf -r CddrReport.*",
+    "pretest": "rimraf -r ./cypress/reports/*json && rimraf -r index.*",
     "test": "npx cypress run --headed --spec cypress/integration/1-getting-started/todo.spec.js ||npm run posttest",
     "posttest": "npm run merge && npm run generate_mochawesome_report",
-    "merge": "mochawesome-merge cypress/reports/*.json > CddrReport.json",
-    "generate_mochawesome_report": "marge CddrReport.json --reportDir ./ --inline"
+    "merge": "mochawesome-merge cypress/reports/*.json > index.json",
+    "generate_mochawesome_report": "marge index.json --reportDir ./ --inline"
   },
   "keywords": [],
   "author": "",
