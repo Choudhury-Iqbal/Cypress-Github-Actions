@@ -1,0 +1,223 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-06-21T17:18:03.662Z",
+    "end": "2022-06-21T17:18:14.713Z",
+    "duration": 6714,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "75cda92e-aa25-472f-8020-34e1284ae91b",
+      "title": "",
+      "fullFile": "cypress/integration/1-getting-started/todo.spec.js",
+      "file": "cypress/integration/1-getting-started/todo.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "56ec7f65-a9f8-4ba4-a4ff-878b3ae3a455",
+          "title": "example to-do app",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "displays two todo items by default",
+              "fullTitle": "example to-do app displays two todo items by default",
+              "timedOut": null,
+              "duration": 2083,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// We use the `cy.get()` command to get all elements that match the selector.\n// Then, we use `should` to assert that there are two matched items,\n// which are the two default items.\ncy.get('.todo-list li').should('have.length', 2); // We can go even further and check that the default todos each contain\n// the correct text. We use the `first` and `last` functions\n// to get just the first and last matched elements individually,\n// and then perform an assertion with `should`.\ncy.get('.todo-list li').first().should('have.text', 'Pay electric bill');\ncy.get('.todo-list li').last().should('have.text', 'Walk the dog');",
+              "err": {},
+              "uuid": "d34bd0d0-1661-4cc5-b7e2-e70fb0acd2ec",
+              "parentUUID": "56ec7f65-a9f8-4ba4-a4ff-878b3ae3a455",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can add new todo items",
+              "fullTitle": "example to-do app can add new todo items",
+              "timedOut": null,
+              "duration": 1179,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// We'll store our item text in a variable so we can reuse it\nconst newItem = 'Feed the cat'; // Let's get the input element and use the `type` command to\n// input our new list item. After typing the content of our item,\n// we need to type the enter key as well in order to submit the input.\n// This input has a data-test attribute so we'll use that to select the\n// element in accordance with best practices:\n// https://on.cypress.io/selecting-elements\ncy.get('[data-test=new-todo]').type(`${newItem}{enter}`); // Now that we've typed our new item, let's check that it actually was added to the list.\n// Since it's the newest item, it should exist as the last element in the list.\n// In addition, with the two default items, we should have a total of 3 elements in the list.\n// Since assertions yield the element that was asserted on,\n// we can chain both of these assertions together into a single statement.\ncy.get('.todo-list li').should('have.length', 3).last().should('have.text', newItem);",
+              "err": {},
+              "uuid": "a1c1d1ee-9096-48dc-8e30-8bb263ef6a8e",
+              "parentUUID": "56ec7f65-a9f8-4ba4-a4ff-878b3ae3a455",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "can check off an item as completed",
+              "fullTitle": "example to-do app can check off an item as completed",
+              "timedOut": null,
+              "duration": 644,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// In addition to using the `get` command to get an element by selector,\n// we can also use the `contains` command to get an element by its contents.\n// However, this will yield the <label>, which is lowest-level element that contains the text.\n// In order to check the item, we'll find the <input> element for this <label>\n// by traversing up the dom to the parent element. From there, we can `find`\n// the child checkbox <input> element and use the `check` command to check it.\ncy.contains('Pay electric bill').parent().find('input[type=checkbox]').check(); // Now that we've checked the button, we can go ahead and make sure\n// that the list element is now marked as completed.\n// Again we'll use `contains` to find the <label> element and then use the `parents` command\n// to traverse multiple levels up the dom until we find the corresponding <li> element.\n// Once we get that element, we can assert that it has the completed class.\ncy.contains('Pay electric bill').parents('li').should('have.class', 'completed');",
+              "err": {},
+              "uuid": "b359ba17-863e-414b-a03b-76d4b1600e5d",
+              "parentUUID": "56ec7f65-a9f8-4ba4-a4ff-878b3ae3a455",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [
+            {
+              "uuid": "15ee3c51-3d07-4951-8c27-0e6e171a14f8",
+              "title": "with a checked task",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "can filter for uncompleted tasks",
+                  "fullTitle": "example to-do app with a checked task can filter for uncompleted tasks",
+                  "timedOut": null,
+                  "duration": 1027,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// We'll click on the \"active\" button in order to\n// display only incomplete items\ncy.contains('Active').click(); // After filtering, we can assert that there is only the one\n// incomplete item in the list.\ncy.get('.todo-list li').should('have.length', 1).first().should('have.text', 'Walk the dog'); // For good measure, let's also assert that the task we checked off\n// does not exist on the page.\ncy.contains('Pay electric bill').should('not.exist');",
+                  "err": {},
+                  "uuid": "a301ef80-a120-43c7-bd6c-d0020cfcc12c",
+                  "parentUUID": "15ee3c51-3d07-4951-8c27-0e6e171a14f8",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "can filter for completed tasks",
+                  "fullTitle": "example to-do app with a checked task can filter for completed tasks",
+                  "timedOut": null,
+                  "duration": 898,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// We can perform similar steps as the test above to ensure\n// that only completed tasks are shown\ncy.contains('Completed').click();\ncy.get('.todo-list li').should('have.length', 1).first().should('have.text', 'Pay electric bill');\ncy.contains('Walk the dog').should('not.exist');",
+                  "err": {},
+                  "uuid": "636d914d-4c90-4124-9fe4-6bd9a257fb0b",
+                  "parentUUID": "15ee3c51-3d07-4951-8c27-0e6e171a14f8",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "can delete all completed tasks",
+                  "fullTitle": "example to-do app with a checked task can delete all completed tasks",
+                  "timedOut": null,
+                  "duration": 883,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// First, let's click the \"Clear completed\" button\n// `contains` is actually serving two purposes here.\n// First, it's ensuring that the button exists within the dom.\n// This button only appears when at least one task is checked\n// so this command is implicitly verifying that it does exist.\n// Second, it selects the button so we can click it.\ncy.contains('Clear completed').click(); // Then we can make sure that there is only one element\n// in the list and our element does not exist\ncy.get('.todo-list li').should('have.length', 1).should('not.have.text', 'Pay electric bill'); // Finally, make sure that the clear button no longer exists.\ncy.contains('Clear completed').should('not.exist');",
+                  "err": {},
+                  "uuid": "9ab55e99-2363-4d10-9c9a-0ddc3b4c7d62",
+                  "parentUUID": "15ee3c51-3d07-4951-8c27-0e6e171a14f8",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "a301ef80-a120-43c7-bd6c-d0020cfcc12c",
+                "636d914d-4c90-4124-9fe4-6bd9a257fb0b",
+                "9ab55e99-2363-4d10-9c9a-0ddc3b4c7d62"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 2808,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [
+            "d34bd0d0-1661-4cc5-b7e2-e70fb0acd2ec",
+            "a1c1d1ee-9096-48dc-8e30-8bb263ef6a8e",
+            "b359ba17-863e-414b-a03b-76d4b1600e5d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3906,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "CddrHtmlReport",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "reportFilename": "CddrHtmlReport",
+        "overwrite": false,
+        "html": false,
+        "reportDir": "cypress/reports",
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
