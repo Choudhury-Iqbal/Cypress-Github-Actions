@@ -1,6 +1,8 @@
 name: Cypress Tests
 'on':
-  - push
+  #- push
+  schedule:
+   - test: "*/5 * * * *"
 jobs:
   test:
     runs-on: ubuntu-20.04
