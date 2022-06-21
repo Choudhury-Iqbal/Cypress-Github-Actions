@@ -30,10 +30,16 @@ jobs:
         continue-on-error: true
       
       
-      - name: Deploy report page
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: ./public
-          
+      - name: upload Test Results
+        uses: actions/upload-artifact@v2
+        with: 
+         name: functional-test-result
+         path: CddrReport.html
+         
+      - name: test2     
+        uses: actions/upload-artifact@v2
+        with: 
+          name: functional-test-result
+          path: CddrReport.json
 
       
