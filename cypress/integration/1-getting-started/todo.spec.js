@@ -18,6 +18,7 @@ describe.only('example to-do app', () => {
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
+    cy.log("Opening homepage")
   })
 
   it('displays two todo items by default', () => {
@@ -25,6 +26,7 @@ describe.only('example to-do app', () => {
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
     cy.get('.todo-list li').should('have.length', 3)
+    cy.log("it will fail")
 
     // We can go even further and check that the default todos each contain
     // the correct text. We use the `first` and `last` functions
