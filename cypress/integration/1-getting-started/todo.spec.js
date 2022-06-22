@@ -19,6 +19,7 @@ describe.only('example to-do app', () => {
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
     cy.log("Opening homepage")
+    cy.addContext('Opening log ')
   })
 
   it('displays two todo items by default', () => {
@@ -27,6 +28,7 @@ describe.only('example to-do app', () => {
     // which are the two default items.
     cy.get('.todo-list li').should('have.length', 3)
     cy.log("it will fail")
+    cy.addContext("It will fail")
 
     // We can go even further and check that the default todos each contain
     // the correct text. We use the `first` and `last` functions
