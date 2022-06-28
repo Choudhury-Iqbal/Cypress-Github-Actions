@@ -19,6 +19,7 @@ describe.only('example to-do app', () => {
     // we include it in our beforeEach function so that it runs before each test
     cy.visit('https://example.cypress.io/todo')
     cy.log("Opening homepage")
+    //test
   })
   
   it('displays two todo items by default', () => {
