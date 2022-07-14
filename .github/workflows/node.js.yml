@@ -10,36 +10,24 @@ on:
     branches: [ "master" ]
 
 jobs:
+  Build_and_Push:
+   runs-on: ubuntu-latest
+   permissions:
+    contents: read
+    packages: write
+   env:
+    USER: ${{ secrets.ARTIFACTORY_USERNAME }}
+    PASS: ${{ secrets.ARTIFACTORY_PASSWORD }}
+   steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Docker Login
+      run:  docker login -u $USER -p $PASS mckinseydemoproject.jfrog.io
+    - name: Image Build
+      run: |
+       docker push mckinsey-getstarted-docker.jfrog.io/Cypress-Github-Actions
+    - name: Docker Logout
+      run:  Docker logout mckinseydemoproject.jfrog.io
+      
   
-  cypressTest:
-    name: Run on Chrome Sample project
-    runs-on: ubuntu-20.04
-    #container: cypress/browsers:node12.16.2-chrome81-ff75
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Install a project with a clean slate
-        run: |
-          npm ci
-          $(npm bin)/cypress cache path
-          $(npm bin)/cypress cache list
-          $(npm bin)/cypress verify
-      
-      - name: Run Cypress tests
-        run: npm run test
-        continue-on-error: true
-      
-      
-      - name: upload Test Results
-        uses: actions/upload-artifact@v2
-        with: 
-         name: functional-test-result
-         path: CddrReport.html
-         
-      - name: upload Screenshot   
-        uses: actions/upload-artifact@v2
-        with: 
-          name: functional-test-result
-          path: cypress/screenshots
-
       
