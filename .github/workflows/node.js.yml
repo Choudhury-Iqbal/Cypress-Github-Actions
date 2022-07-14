@@ -16,8 +16,8 @@ jobs:
     contents: read
     packages: write
    env:
-    USER: ${{ secrets.ARTIFACTORY_USERNAME }}
-    PASS: ${{ secrets.ARTIFACTORY_PASSWORD }}
+    USER: ${{ secrets.DOCKERHUB_USERNAME }}
+    PASS: ${{ secrets.DOCKERHUB_TOKEN }}
    steps:
     - name: Checkout Code
       uses: actions/checkout@v2
