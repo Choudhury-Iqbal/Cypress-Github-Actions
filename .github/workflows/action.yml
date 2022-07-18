@@ -13,7 +13,7 @@ jobs:
         
       - name: Cypress info
         continue-on-error: true
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           build: npm run test
       
